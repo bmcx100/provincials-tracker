@@ -1,0 +1,37 @@
+{
+  "title": "2026 OWHA Provincial Championship Playing Rules",
+  "sourceUrl": "https://cloud3.rampinteractive.com/whaontario/files/Provincials/2026/2026%20OWHA%20Provincial%20Championship%20Playing%20Rules.pdf",
+  "points": {
+    "win": 2,
+    "tie": 1,
+    "loss": 0
+  },
+  "tiebreakers": [
+    "Total points in round robin play",
+    "Most number of wins",
+    "Record against other tied teams (win/loss record among other tied teams)",
+    "Goals scored minus the goals against in the full round robin play",
+    "Fewest goals allowed in the full round robin play",
+    "Most periods won in the full round robin play",
+    "Fewest penalty minutes in the full round robin play",
+    "First goal scored in the full round robin play",
+    "Flip of a coin"
+  ],
+  "gameLength": {
+    "nonMedal": "12-12-12-Flood",
+    "medal": "12-12-Flood-15"
+  },
+  "overtime": {
+    "appliesTo": "Quarter finals, semi-finals, and championship games only",
+    "format": "10 minute stop time sudden victory per period",
+    "periods": [
+      "1st OT: 5 on 5 plus goalie",
+      "2nd OT: 4 on 4 plus goalie",
+      "3rd+ OT: 3 on 3 plus goalie"
+    ],
+    "endSwitch": "Teams do not switch ends for 1st OT, switch after each successive period"
+  },
+  "noOvertimeInRoundRobin": true,
+  "timeout": "One 30 second timeout per team per game (regulation or overtime)",
+  "sweaters": "Home team wears light-coloured sweaters"
+}

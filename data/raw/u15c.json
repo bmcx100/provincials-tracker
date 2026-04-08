@@ -1,0 +1,42 @@
+{
+  "level": "U15C",
+  "playoffFormat": "4pool-no-qf",
+  "pools": [
+    {"id": "A", "teams": [{"number": 2287, "name": "Chatham Kent Crush"}, {"number": 7063, "name": "Cold Creek Comets"}, {"number": 8709, "name": "Kincardine Kinucks"}, {"number": 2865, "name": "Nepean Wildcats"}]},
+    {"id": "B", "teams": [{"number": 2478, "name": "East Ottawa Stars"}, {"number": 8026, "name": "Gananoque Royals"}, {"number": 8762, "name": "Mount Forest Rams"}, {"number": 7298, "name": "Parkhill"}]},
+    {"id": "C", "teams": [{"number": 3660, "name": "Huron Heat"}, {"number": 6325, "name": "Lambeth Lancers"}, {"number": 8747, "name": "South Bruce Blades"}, {"number": 6813, "name": "St Thomas Panthers"}]},
+    {"id": "D", "teams": [{"number": 2361, "name": "Flamborough Falcons"}, {"number": 4204, "name": "Lambton Attack"}, {"number": 3613, "name": "Stratford Aces"}, {"number": 6886, "name": "Woodstock Wildcats"}]}
+  ],
+  "games": [
+    {"game": 340, "day": "Friday", "date": "Apr 10", "time": "6:15 PM", "rink": "Susan Fennell Sportsplex - Rink 1", "phase": "round-robin", "pool": "A", "home": 2287, "away": 7063},
+    {"game": 341, "day": "Friday", "date": "Apr 10", "time": "6:15 PM", "rink": "Susan Fennell Sportsplex - Rink 3", "phase": "round-robin", "pool": "A", "home": 2865, "away": 8709},
+    {"game": 342, "day": "Friday", "date": "Apr 10", "time": "6:30 PM", "rink": "Susan Fennell Sportsplex - Rink 2", "phase": "round-robin", "pool": "B", "home": 7298, "away": 8762},
+    {"game": 343, "day": "Friday", "date": "Apr 10", "time": "6:30 PM", "rink": "Susan Fennell Sportsplex - Rink 4", "phase": "round-robin", "pool": "B", "home": 2478, "away": 8026},
+    {"game": 344, "day": "Friday", "date": "Apr 10", "time": "7:30 PM", "rink": "Susan Fennell Sportsplex - Rink 1", "phase": "round-robin", "pool": "C", "home": 6813, "away": 3660},
+    {"game": 345, "day": "Friday", "date": "Apr 10", "time": "7:30 PM", "rink": "Susan Fennell Sportsplex - Rink 3", "phase": "round-robin", "pool": "C", "home": 8747, "away": 6325},
+    {"game": 346, "day": "Friday", "date": "Apr 10", "time": "7:45 PM", "rink": "Susan Fennell Sportsplex - Rink 2", "phase": "round-robin", "pool": "D", "home": 6886, "away": 3613},
+    {"game": 347, "day": "Friday", "date": "Apr 10", "time": "7:45 PM", "rink": "Susan Fennell Sportsplex - Rink 4", "phase": "round-robin", "pool": "D", "home": 4204, "away": 2361},
+    {"game": 822, "day": "Saturday", "date": "Apr 11", "time": "1:15 PM", "rink": "Earnscliffe Recreation Centre - Rink 1", "phase": "round-robin", "pool": "A", "home": 8709, "away": 2287},
+    {"game": 823, "day": "Saturday", "date": "Apr 11", "time": "1:30 PM", "rink": "Earnscliffe Recreation Centre - Rink 2", "phase": "round-robin", "pool": "A", "home": 7063, "away": 2865},
+    {"game": 842, "day": "Saturday", "date": "Apr 11", "time": "1:15 PM", "rink": "Century Gardens Rink 1", "phase": "round-robin", "pool": "B", "home": 8026, "away": 7298},
+    {"game": 843, "day": "Saturday", "date": "Apr 11", "time": "1:30 PM", "rink": "Century Gardens Rink 2", "phase": "round-robin", "pool": "B", "home": 8762, "away": 2478},
+    {"game": 870, "day": "Saturday", "date": "Apr 11", "time": "1:15 PM", "rink": "Susan Fennell Sportsplex - Rink 1", "phase": "round-robin", "pool": "C", "home": 6325, "away": 6813},
+    {"game": 871, "day": "Saturday", "date": "Apr 11", "time": "1:15 PM", "rink": "Susan Fennell Sportsplex - Rink 3", "phase": "round-robin", "pool": "C", "home": 3660, "away": 8747},
+    {"game": 872, "day": "Saturday", "date": "Apr 11", "time": "1:30 PM", "rink": "Susan Fennell Sportsplex - Rink 2", "phase": "round-robin", "pool": "D", "home": 2361, "away": 6886},
+    {"game": 873, "day": "Saturday", "date": "Apr 11", "time": "1:30 PM", "rink": "Susan Fennell Sportsplex - Rink 4", "phase": "round-robin", "pool": "D", "home": 3613, "away": 4204},
+    {"game": 830, "day": "Saturday", "date": "Apr 11", "time": "6:30 PM", "rink": "Earnscliffe Recreation Centre - Rink 1", "phase": "round-robin", "pool": "A", "home": 2287, "away": 2865},
+    {"game": 831, "day": "Saturday", "date": "Apr 11", "time": "6:45 PM", "rink": "Earnscliffe Recreation Centre - Rink 2", "phase": "round-robin", "pool": "A", "home": 7063, "away": 8709},
+    {"game": 850, "day": "Saturday", "date": "Apr 11", "time": "6:30 PM", "rink": "Century Gardens Rink 1", "phase": "round-robin", "pool": "B", "home": 7298, "away": 2478},
+    {"game": 851, "day": "Saturday", "date": "Apr 11", "time": "6:45 PM", "rink": "Century Gardens Rink 2", "phase": "round-robin", "pool": "B", "home": 8762, "away": 8026},
+    {"game": 886, "day": "Saturday", "date": "Apr 11", "time": "6:30 PM", "rink": "Susan Fennell Sportsplex - Rink 1", "phase": "round-robin", "pool": "C", "home": 6813, "away": 8747},
+    {"game": 887, "day": "Saturday", "date": "Apr 11", "time": "6:30 PM", "rink": "Susan Fennell Sportsplex - Rink 3", "phase": "round-robin", "pool": "C", "home": 3660, "away": 6325},
+    {"game": 888, "day": "Saturday", "date": "Apr 11", "time": "6:45 PM", "rink": "Susan Fennell Sportsplex - Rink 2", "phase": "round-robin", "pool": "D", "home": 6886, "away": 4204},
+    {"game": 889, "day": "Saturday", "date": "Apr 11", "time": "6:45 PM", "rink": "Susan Fennell Sportsplex - Rink 4", "phase": "round-robin", "pool": "D", "home": 3613, "away": 2361}
+  ],
+  "playoffs": [
+    {"game": 1166, "day": "Sunday", "date": "Apr 12", "time": "8:15 AM", "rink": "Susan Fennell Sportsplex - Rink 2", "phase": "semi-final", "homeRef": {"type": "pool-rank", "pool": "A", "rank": 1}, "awayRef": {"type": "pool-rank", "pool": "D", "rank": 1}},
+    {"game": 1167, "day": "Sunday", "date": "Apr 12", "time": "8:15 AM", "rink": "Susan Fennell Sportsplex - Rink 4", "phase": "semi-final", "homeRef": {"type": "pool-rank", "pool": "B", "rank": 1}, "awayRef": {"type": "pool-rank", "pool": "C", "rank": 1}},
+    {"game": 1174, "day": "Sunday", "date": "Apr 12", "time": "12:45 PM", "rink": "Susan Fennell Sportsplex - Rink 2", "phase": "gold-medal", "homeRef": {"type": "game-winner", "gameId": 1166}, "awayRef": {"type": "game-winner", "gameId": 1167}},
+    {"game": 1175, "day": "Sunday", "date": "Apr 12", "time": "12:45 PM", "rink": "Susan Fennell Sportsplex - Rink 4", "phase": "bronze-medal", "homeRef": {"type": "game-loser", "gameId": 1166}, "awayRef": {"type": "game-loser", "gameId": 1167}}
+  ]
+}

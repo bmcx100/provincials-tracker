@@ -1,0 +1,42 @@
+{
+  "level": "U13C",
+  "playoffFormat": "4pool-no-qf",
+  "pools": [
+    {"id": "A", "teams": [{"number": 5176, "name": "Bluewater Hawks"}, {"number": 6103, "name": "Central Perth Predators"}, {"number": 2291, "name": "Chatham Kent Crush"}, {"number": 7364, "name": "Fort Frances Leafs"}]},
+    {"id": "B", "teams": [{"number": 5936, "name": "Kemptville Storm"}, {"number": 6323, "name": "Lambeth Lancers"}, {"number": 3355, "name": "Sarnia Lady Sting"}, {"number": 8746, "name": "South Bruce Blades"}]},
+    {"id": "C", "teams": [{"number": 2468, "name": "East Ottawa Stars"}, {"number": 658, "name": "London Devilettes"}, {"number": 6667, "name": "Southpoint Stars"}, {"number": 4608, "name": "Wilmot Wolverine"}]},
+    {"id": "D", "teams": [{"number": 7242, "name": "Ilderton Jets"}, {"number": 8707, "name": "Kincardine Kinucks"}, {"number": 2857, "name": "Nepean Wildcats"}, {"number": 5609, "name": "South Huron Sabres"}]}
+  ],
+  "games": [
+    {"game": 364, "day": "Friday", "date": "Apr 10", "time": "1:00 PM", "rink": "Ajax Community Arena 2", "phase": "round-robin", "pool": "A", "home": 2291, "away": 7364},
+    {"game": 365, "day": "Friday", "date": "Apr 10", "time": "1:00 PM", "rink": "Ajax Community Arena 4", "phase": "round-robin", "pool": "A", "home": 6103, "away": 5176},
+    {"game": 366, "day": "Friday", "date": "Apr 10", "time": "1:15 PM", "rink": "Ajax Community Arena 1", "phase": "round-robin", "pool": "B", "home": 6323, "away": 8746},
+    {"game": 367, "day": "Friday", "date": "Apr 10", "time": "1:15 PM", "rink": "Ajax Community Arena 3", "phase": "round-robin", "pool": "B", "home": 3355, "away": 5936},
+    {"game": 368, "day": "Friday", "date": "Apr 10", "time": "2:15 PM", "rink": "Ajax Community Arena 2", "phase": "round-robin", "pool": "C", "home": 658, "away": 4608},
+    {"game": 369, "day": "Friday", "date": "Apr 10", "time": "2:15 PM", "rink": "Ajax Community Arena 4", "phase": "round-robin", "pool": "C", "home": 2468, "away": 6667},
+    {"game": 370, "day": "Friday", "date": "Apr 10", "time": "2:30 PM", "rink": "Ajax Community Arena 1", "phase": "round-robin", "pool": "D", "home": 5609, "away": 8707},
+    {"game": 371, "day": "Friday", "date": "Apr 10", "time": "2:30 PM", "rink": "Ajax Community Arena 3", "phase": "round-robin", "pool": "D", "home": 2857, "away": 7242},
+    {"game": 894, "day": "Saturday", "date": "Apr 11", "time": "8:00 AM", "rink": "Ajax Community Arena 2", "phase": "round-robin", "pool": "A", "home": 5176, "away": 2291},
+    {"game": 895, "day": "Saturday", "date": "Apr 11", "time": "8:00 AM", "rink": "Ajax Community Arena 4", "phase": "round-robin", "pool": "A", "home": 7364, "away": 6103},
+    {"game": 896, "day": "Saturday", "date": "Apr 11", "time": "8:15 AM", "rink": "Ajax Community Arena 1", "phase": "round-robin", "pool": "B", "home": 5936, "away": 6323},
+    {"game": 897, "day": "Saturday", "date": "Apr 11", "time": "8:15 AM", "rink": "Ajax Community Arena 3", "phase": "round-robin", "pool": "B", "home": 8746, "away": 3355},
+    {"game": 898, "day": "Saturday", "date": "Apr 11", "time": "9:15 AM", "rink": "Ajax Community Arena 2", "phase": "round-robin", "pool": "C", "home": 6667, "away": 658},
+    {"game": 899, "day": "Saturday", "date": "Apr 11", "time": "9:15 AM", "rink": "Ajax Community Arena 4", "phase": "round-robin", "pool": "C", "home": 4608, "away": 2468},
+    {"game": 900, "day": "Saturday", "date": "Apr 11", "time": "9:30 AM", "rink": "Ajax Community Arena 1", "phase": "round-robin", "pool": "D", "home": 7242, "away": 5609},
+    {"game": 901, "day": "Saturday", "date": "Apr 11", "time": "9:30 AM", "rink": "Ajax Community Arena 3", "phase": "round-robin", "pool": "D", "home": 8707, "away": 2857},
+    {"game": 922, "day": "Saturday", "date": "Apr 11", "time": "5:15 PM", "rink": "Ajax Community Arena 2", "phase": "round-robin", "pool": "A", "home": 2291, "away": 6103},
+    {"game": 923, "day": "Saturday", "date": "Apr 11", "time": "5:15 PM", "rink": "Ajax Community Arena 4", "phase": "round-robin", "pool": "A", "home": 7364, "away": 5176},
+    {"game": 924, "day": "Saturday", "date": "Apr 11", "time": "5:30 PM", "rink": "Ajax Community Arena 1", "phase": "round-robin", "pool": "B", "home": 6323, "away": 3355},
+    {"game": 925, "day": "Saturday", "date": "Apr 11", "time": "5:30 PM", "rink": "Ajax Community Arena 3", "phase": "round-robin", "pool": "B", "home": 8746, "away": 5936},
+    {"game": 926, "day": "Saturday", "date": "Apr 11", "time": "6:30 PM", "rink": "Ajax Community Arena 2", "phase": "round-robin", "pool": "C", "home": 658, "away": 2468},
+    {"game": 927, "day": "Saturday", "date": "Apr 11", "time": "6:30 PM", "rink": "Ajax Community Arena 4", "phase": "round-robin", "pool": "C", "home": 4608, "away": 6667},
+    {"game": 928, "day": "Saturday", "date": "Apr 11", "time": "6:45 PM", "rink": "Ajax Community Arena 1", "phase": "round-robin", "pool": "D", "home": 5609, "away": 2857},
+    {"game": 929, "day": "Saturday", "date": "Apr 11", "time": "6:45 PM", "rink": "Ajax Community Arena 3", "phase": "round-robin", "pool": "D", "home": 8707, "away": 7242}
+  ],
+  "playoffs": [
+    {"game": 1118, "day": "Sunday", "date": "Apr 12", "time": "8:15 AM", "rink": "Chesswood Arenas Pad 2", "phase": "semi-final", "homeRef": {"type": "pool-rank", "pool": "A", "rank": 1}, "awayRef": {"type": "pool-rank", "pool": "D", "rank": 1}},
+    {"game": 1119, "day": "Sunday", "date": "Apr 12", "time": "8:15 AM", "rink": "Chesswood Arenas Pad 4", "phase": "semi-final", "homeRef": {"type": "pool-rank", "pool": "B", "rank": 1}, "awayRef": {"type": "pool-rank", "pool": "C", "rank": 1}},
+    {"game": 1126, "day": "Sunday", "date": "Apr 12", "time": "12:45 PM", "rink": "Chesswood Arenas Pad 2", "phase": "gold-medal", "homeRef": {"type": "game-winner", "gameId": 1118}, "awayRef": {"type": "game-winner", "gameId": 1119}},
+    {"game": 1127, "day": "Sunday", "date": "Apr 12", "time": "12:45 PM", "rink": "Chesswood Arenas Pad 4", "phase": "bronze-medal", "homeRef": {"type": "game-loser", "gameId": 1118}, "awayRef": {"type": "game-loser", "gameId": 1119}}
+  ]
+}

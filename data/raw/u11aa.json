@@ -1,0 +1,50 @@
+{
+  "level": "U11AA",
+  "playoffFormat": "5pool-ranked",
+  "pools": [
+    {"id": "A", "teams": [{"number": 120, "name": "Barrie Sharks"}, {"number": 225, "name": "Brampton Canadettes"}, {"number": 3246, "name": "Oshawa Lady Generals"}, {"number": 3403, "name": "Stoney Creek Sabres"}]},
+    {"id": "B", "teams": [{"number": 42, "name": "Central York Panthers"}, {"number": 3919, "name": "Clarington Flames"}, {"number": 1268, "name": "Oakville Hornets"}, {"number": 1075, "name": "Sudbury Lady Wolves"}]},
+    {"id": "C", "teams": [{"number": 629, "name": "London Devilettes"}, {"number": 1615, "name": "Burlington Barracudas"}, {"number": 5852, "name": "Mississauga Hurricanes"}, {"number": 2557, "name": "North Halton Twisters"}]},
+    {"id": "D", "teams": [{"number": 3819, "name": "Toronto Leaside Wildcats"}, {"number": 2204, "name": "Cambridge Roadrunners"}, {"number": 2450, "name": "East Ottawa Stars"}, {"number": 2600, "name": "Kingston Ice Wolves"}]},
+    {"id": "E", "teams": [{"number": 5416, "name": "Belleville Bearcats"}, {"number": 445, "name": "Etobicoke Dolphins"}, {"number": 1710, "name": "Kanata Rangers"}, {"number": 1168, "name": "Waterloo Ravens"}]}
+  ],
+  "games": [
+    {"game": 572, "day": "Friday", "date": "Apr 10", "time": "8:00 AM", "rink": "Vaughan Sports Village Pad B", "phase": "round-robin", "pool": "A", "home": 3246, "away": 225},
+    {"game": 573, "day": "Friday", "date": "Apr 10", "time": "8:00 AM", "rink": "Vaughan Sports Village Pad C", "phase": "round-robin", "pool": "A", "home": 120, "away": 3403},
+    {"game": 574, "day": "Friday", "date": "Apr 10", "time": "8:15 AM", "rink": "Vaughan Sports Village Pad A", "phase": "round-robin", "pool": "B", "home": 1268, "away": 1075},
+    {"game": 575, "day": "Friday", "date": "Apr 10", "time": "8:15 AM", "rink": "Vaughan Sports Village Pad D", "phase": "round-robin", "pool": "B", "home": 3919, "away": 42},
+    {"game": 576, "day": "Friday", "date": "Apr 10", "time": "9:15 AM", "rink": "Vaughan Sports Village Pad B", "phase": "round-robin", "pool": "C", "home": 629, "away": 2557},
+    {"game": 577, "day": "Friday", "date": "Apr 10", "time": "9:15 AM", "rink": "Vaughan Sports Village Pad C", "phase": "round-robin", "pool": "C", "home": 5852, "away": 1615},
+    {"game": 578, "day": "Friday", "date": "Apr 10", "time": "9:30 AM", "rink": "Vaughan Sports Village Pad A", "phase": "round-robin", "pool": "D", "home": 3819, "away": 2600},
+    {"game": 579, "day": "Friday", "date": "Apr 10", "time": "9:30 AM", "rink": "Vaughan Sports Village Pad D", "phase": "round-robin", "pool": "D", "home": 2204, "away": 2450},
+    {"game": 580, "day": "Friday", "date": "Apr 10", "time": "10:30 AM", "rink": "Vaughan Sports Village Pad B", "phase": "round-robin", "pool": "E", "home": 1710, "away": 445},
+    {"game": 581, "day": "Friday", "date": "Apr 10", "time": "10:30 AM", "rink": "Vaughan Sports Village Pad C", "phase": "round-robin", "pool": "E", "home": 1168, "away": 5416},
+    {"game": 594, "day": "Friday", "date": "Apr 10", "time": "2:30 PM", "rink": "Vaughan Sports Village Pad A", "phase": "round-robin", "pool": "A", "home": 225, "away": 120},
+    {"game": 595, "day": "Friday", "date": "Apr 10", "time": "2:30 PM", "rink": "Vaughan Sports Village Pad D", "phase": "round-robin", "pool": "A", "home": 3403, "away": 3246},
+    {"game": 596, "day": "Friday", "date": "Apr 10", "time": "3:45 PM", "rink": "Vaughan Sports Village Pad B", "phase": "round-robin", "pool": "B", "home": 1075, "away": 3919},
+    {"game": 597, "day": "Friday", "date": "Apr 10", "time": "3:45 PM", "rink": "Vaughan Sports Village Pad C", "phase": "round-robin", "pool": "B", "home": 42, "away": 1268},
+    {"game": 598, "day": "Friday", "date": "Apr 10", "time": "4:00 PM", "rink": "Vaughan Sports Village Pad A", "phase": "round-robin", "pool": "C", "home": 2557, "away": 5852},
+    {"game": 599, "day": "Friday", "date": "Apr 10", "time": "4:00 PM", "rink": "Vaughan Sports Village Pad D", "phase": "round-robin", "pool": "C", "home": 1615, "away": 629},
+    {"game": 600, "day": "Friday", "date": "Apr 10", "time": "5:00 PM", "rink": "Vaughan Sports Village Pad B", "phase": "round-robin", "pool": "D", "home": 2600, "away": 2204},
+    {"game": 601, "day": "Friday", "date": "Apr 10", "time": "5:00 PM", "rink": "Vaughan Sports Village Pad C", "phase": "round-robin", "pool": "D", "home": 2450, "away": 3819},
+    {"game": 602, "day": "Friday", "date": "Apr 10", "time": "5:15 PM", "rink": "Vaughan Sports Village Pad A", "phase": "round-robin", "pool": "E", "home": 445, "away": 1168},
+    {"game": 603, "day": "Friday", "date": "Apr 10", "time": "5:15 PM", "rink": "Vaughan Sports Village Pad D", "phase": "round-robin", "pool": "E", "home": 5416, "away": 1710},
+    {"game": 1044, "day": "Saturday", "date": "Apr 11", "time": "8:00 AM", "rink": "NFP Centre Rink 1", "phase": "round-robin", "pool": "A", "home": 3246, "away": 120},
+    {"game": 1045, "day": "Saturday", "date": "Apr 11", "time": "8:00 AM", "rink": "NFP Centre Rink 4", "phase": "round-robin", "pool": "A", "home": 225, "away": 3403},
+    {"game": 1046, "day": "Saturday", "date": "Apr 11", "time": "8:00 AM", "rink": "NFP Centre Rink 5", "phase": "round-robin", "pool": "B", "home": 1268, "away": 3919},
+    {"game": 1047, "day": "Saturday", "date": "Apr 11", "time": "8:15 AM", "rink": "NFP Centre Rink 2", "phase": "round-robin", "pool": "B", "home": 1075, "away": 42},
+    {"game": 1048, "day": "Saturday", "date": "Apr 11", "time": "8:15 AM", "rink": "NFP Centre Rink 3", "phase": "round-robin", "pool": "C", "home": 629, "away": 5852},
+    {"game": 1049, "day": "Saturday", "date": "Apr 11", "time": "8:15 AM", "rink": "NFP Centre Rink 6", "phase": "round-robin", "pool": "C", "home": 2557, "away": 1615},
+    {"game": 1050, "day": "Saturday", "date": "Apr 11", "time": "9:15 AM", "rink": "NFP Centre Rink 1", "phase": "round-robin", "pool": "D", "home": 3819, "away": 2204},
+    {"game": 1051, "day": "Saturday", "date": "Apr 11", "time": "9:15 AM", "rink": "NFP Centre Rink 4", "phase": "round-robin", "pool": "D", "home": 2600, "away": 2450},
+    {"game": 1052, "day": "Saturday", "date": "Apr 11", "time": "9:15 AM", "rink": "NFP Centre Rink 5", "phase": "round-robin", "pool": "E", "home": 1710, "away": 1168},
+    {"game": 1053, "day": "Saturday", "date": "Apr 11", "time": "9:30 AM", "rink": "NFP Centre Rink 2", "phase": "round-robin", "pool": "E", "home": 445, "away": 5416}
+  ],
+  "playoffs": [
+    {"game": 644, "day": "Saturday", "date": "Apr 11", "time": "5:30 PM", "rink": "Iceland Arena Rink 2", "phase": "quarter-final", "homeRef": {"type": "pool-rank", "rank": 4}, "awayRef": {"type": "pool-rank", "rank": 5}, "matchup": "4th of 1st Place Teams vs 5th of 1st Place Teams"},
+    {"game": 1104, "day": "Sunday", "date": "Apr 12", "time": "8:00 AM", "rink": "Iceland Arena Rink 2", "phase": "semi-final", "homeRef": {"type": "pool-rank", "rank": 1}, "awayRef": {"type": "game-winner", "gameId": 644}, "matchup": "1st of 1st Place Teams vs Winner #644"},
+    {"game": 1105, "day": "Sunday", "date": "Apr 12", "time": "8:00 AM", "rink": "Iceland Arena Rink 4", "phase": "semi-final", "homeRef": {"type": "pool-rank", "rank": 2}, "awayRef": {"type": "pool-rank", "rank": 3}, "matchup": "2nd of 1st Place Teams vs 3rd of 1st Place Teams"},
+    {"game": 1110, "day": "Sunday", "date": "Apr 12", "time": "12:30 PM", "rink": "Iceland Arena Rink 2", "phase": "gold-medal", "homeRef": {"type": "game-winner", "gameId": 1104}, "awayRef": {"type": "game-winner", "gameId": 1105}, "matchup": "Winner #1104 vs Winner #1105"},
+    {"game": 1111, "day": "Sunday", "date": "Apr 12", "time": "12:30 PM", "rink": "Iceland Arena Rink 4", "phase": "bronze-medal", "homeRef": {"type": "game-loser", "gameId": 1104}, "awayRef": {"type": "game-loser", "gameId": 1105}, "matchup": "Loser #1104 vs Loser #1105"}
+  ]
+}
