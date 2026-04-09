@@ -5,48 +5,60 @@ import { Score } from "@/lib/types";
 import * as storage from "@/lib/storage";
 
 interface UserPrefs {
-  myTeam: string | null;
+  myKidTeams: string[];
   friendTeams: string[];
   scores: Record<string, Score>;
   hydrated: boolean;
-  setMyTeam: (teamId: string | null) => void;
+  addMyKidTeam: (teamId: string) => void;
+  removeMyKidTeam: (teamId: string) => void;
   addFriendTeam: (teamId: string) => void;
   removeFriendTeam: (teamId: string) => void;
+  moveToMyKid: (teamId: string) => void;
+  moveToFriends: (teamId: string) => void;
   setScore: (gameId: number, score: Score) => void;
   clearScore: (gameId: number) => void;
   trackedTeams: string[];
 }
 
 const UserPrefsContext = createContext<UserPrefs>({
-  myTeam: null,
+  myKidTeams: [],
   friendTeams: [],
   scores: {},
   hydrated: false,
-  setMyTeam: () => {},
+  addMyKidTeam: () => {},
+  removeMyKidTeam: () => {},
   addFriendTeam: () => {},
   removeFriendTeam: () => {},
+  moveToMyKid: () => {},
+  moveToFriends: () => {},
   setScore: () => {},
   clearScore: () => {},
   trackedTeams: [],
 });
 
 export function UserPrefsProvider({ children }: { children: React.ReactNode }) {
-  const [myTeam, setMyTeamState] = useState<string | null>(null);
+  const [myKidTeams, setMyKidTeamsState] = useState<string[]>([]);
   const [friendTeams, setFriendTeamsState] = useState<string[]>([]);
   const [scores, setScoresState] = useState<Record<string, Score>>({});
   const [hydrated, setHydrated] = useState(false);
 
-  // Hydrate from localStorage on mount
+  // Hydrate from localStorage on mount (with migration)
   useEffect(() => {
-    setMyTeamState(storage.getMyTeam());
+    storage.migrateStorage();
+    setMyKidTeamsState(storage.getMyKidTeams());
     setFriendTeamsState(storage.getFriendTeams());
     setScoresState(storage.getScores());
     setHydrated(true);
   }, []);
 
-  const setMyTeam = useCallback((teamId: string | null) => {
-    storage.setMyTeam(teamId);
-    setMyTeamState(teamId);
+  const addMyKidTeam = useCallback((teamId: string) => {
+    storage.addMyKidTeam(teamId);
+    setMyKidTeamsState(storage.getMyKidTeams());
+  }, []);
+
+  const removeMyKidTeam = useCallback((teamId: string) => {
+    storage.removeMyKidTeam(teamId);
+    setMyKidTeamsState(storage.getMyKidTeams());
   }, []);
 
   const addFriendTeam = useCallback((teamId: string) => {
@@ -56,6 +68,18 @@ export function UserPrefsProvider({ children }: { children: React.ReactNode }) {
 
   const removeFriendTeam = useCallback((teamId: string) => {
     storage.removeFriendTeam(teamId);
+    setFriendTeamsState(storage.getFriendTeams());
+  }, []);
+
+  const moveToMyKid = useCallback((teamId: string) => {
+    storage.moveToMyKid(teamId);
+    setMyKidTeamsState(storage.getMyKidTeams());
+    setFriendTeamsState(storage.getFriendTeams());
+  }, []);
+
+  const moveToFriends = useCallback((teamId: string) => {
+    storage.moveToFriends(teamId);
+    setMyKidTeamsState(storage.getMyKidTeams());
     setFriendTeamsState(storage.getFriendTeams());
   }, []);
 
@@ -69,20 +93,21 @@ export function UserPrefsProvider({ children }: { children: React.ReactNode }) {
     setScoresState(storage.getScores());
   }, []);
 
-  const trackedTeams = myTeam
-    ? [myTeam, ...friendTeams.filter((f) => f !== myTeam)]
-    : friendTeams;
+  const trackedTeams = [...new Set([...myKidTeams, ...friendTeams])];
 
   return (
     <UserPrefsContext.Provider
       value={{
-        myTeam,
+        myKidTeams,
         friendTeams,
         scores,
         hydrated,
-        setMyTeam,
+        addMyKidTeam,
+        removeMyKidTeam,
         addFriendTeam,
         removeFriendTeam,
+        moveToMyKid,
+        moveToFriends,
         setScore,
         clearScore,
         trackedTeams,

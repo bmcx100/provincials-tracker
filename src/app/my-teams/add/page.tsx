@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function SelectRedirect() {
+export default function AddTeamRedirect() {
   const router = useRouter();
 
   useEffect(() => {

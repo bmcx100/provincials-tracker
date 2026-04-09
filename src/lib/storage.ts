@@ -3,8 +3,16 @@
 import { Score } from "./types";
 
 const KEYS = {
+  myKidTeams: "prov-my-kid-teams",
+  friendTeams: "prov-friend-teams",
+  scores: "prov-scores",
+} as const;
+
+// Old keys for migration
+const OLD_KEYS = {
   myTeam: "wha-my-team",
   friendTeams: "wha-friend-teams",
+  otherTeams: "wha-other-teams",
   scores: "wha-scores",
 } as const;
 
@@ -28,20 +36,64 @@ function safeSet(key: string, value: unknown): void {
   }
 }
 
-// My team: "teamId" (e.g. "120-u11aa")
-export function getMyTeam(): string | null {
-  return safeGet<string | null>(KEYS.myTeam, null);
+// Migrate from old storage keys to new ones (run once on hydrate)
+export function migrateStorage(): void {
+  if (typeof window === "undefined") return;
+
+  // Already migrated if new keys exist
+  if (localStorage.getItem(KEYS.myKidTeams) || localStorage.getItem(KEYS.friendTeams)) return;
+
+  const oldMyTeam = safeGet<string | null>(OLD_KEYS.myTeam, null);
+  const oldFriendTeams = safeGet<string[]>(OLD_KEYS.friendTeams, []);
+  const oldOtherTeams = safeGet<string[]>(OLD_KEYS.otherTeams, []);
+  const oldScores = safeGet<Record<string, Score>>(OLD_KEYS.scores, {});
+
+  // Only migrate if there's old data
+  if (!oldMyTeam && oldFriendTeams.length === 0 && oldOtherTeams.length === 0) return;
+
+  // myTeam → myKidTeams (promote the primary team)
+  const kidTeams: string[] = [];
+  if (oldMyTeam) kidTeams.push(oldMyTeam);
+
+  // friendTeams + otherTeams → friendTeams in new model
+  const friends = [...oldFriendTeams, ...oldOtherTeams];
+
+  safeSet(KEYS.myKidTeams, kidTeams);
+  safeSet(KEYS.friendTeams, friends);
+
+  if (Object.keys(oldScores).length > 0) {
+    safeSet(KEYS.scores, oldScores);
+  }
+
+  // Clean up old keys
+  localStorage.removeItem(OLD_KEYS.myTeam);
+  localStorage.removeItem(OLD_KEYS.friendTeams);
+  localStorage.removeItem(OLD_KEYS.otherTeams);
+  localStorage.removeItem(OLD_KEYS.scores);
 }
 
-export function setMyTeam(teamId: string | null): void {
-  if (teamId) {
-    safeSet(KEYS.myTeam, teamId);
-  } else {
-    localStorage.removeItem(KEYS.myTeam);
+// My Kid teams
+export function getMyKidTeams(): string[] {
+  return safeGet<string[]>(KEYS.myKidTeams, []);
+}
+
+export function setMyKidTeams(teams: string[]): void {
+  safeSet(KEYS.myKidTeams, teams);
+}
+
+export function addMyKidTeam(teamId: string): void {
+  const kids = getMyKidTeams();
+  if (!kids.includes(teamId)) {
+    safeSet(KEYS.myKidTeams, [...kids, teamId]);
   }
 }
 
-// Friend teams: array of teamIds
+export function removeMyKidTeam(teamId: string): void {
+  const kids = getMyKidTeams();
+  safeSet(KEYS.myKidTeams, kids.filter((t) => t !== teamId));
+}
+
+// Friend teams
 export function getFriendTeams(): string[] {
   return safeGet<string[]>(KEYS.friendTeams, []);
 }
@@ -59,13 +111,21 @@ export function addFriendTeam(teamId: string): void {
 
 export function removeFriendTeam(teamId: string): void {
   const friends = getFriendTeams();
-  safeSet(
-    KEYS.friendTeams,
-    friends.filter((t) => t !== teamId)
-  );
+  safeSet(KEYS.friendTeams, friends.filter((t) => t !== teamId));
 }
 
-// Scores: { [gameId]: { home, away } }
+// Move team between sections
+export function moveToMyKid(teamId: string): void {
+  removeFriendTeam(teamId);
+  addMyKidTeam(teamId);
+}
+
+export function moveToFriends(teamId: string): void {
+  removeMyKidTeam(teamId);
+  addFriendTeam(teamId);
+}
+
+// Scores
 export function getScores(): Record<string, Score> {
   return safeGet<Record<string, Score>>(KEYS.scores, {});
 }
@@ -82,10 +142,9 @@ export function clearScore(gameId: number): void {
   safeSet(KEYS.scores, scores);
 }
 
-// Get all tracked team IDs (my team + friends)
+// Get all tracked team IDs (my kid + friends)
 export function getTrackedTeams(): string[] {
-  const myTeam = getMyTeam();
+  const kids = getMyKidTeams();
   const friends = getFriendTeams();
-  const all = myTeam ? [myTeam, ...friends] : friends;
-  return [...new Set(all)];
+  return [...new Set([...kids, ...friends])];
 }

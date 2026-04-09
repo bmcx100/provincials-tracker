@@ -6,16 +6,16 @@ import { useUserPrefs } from "@/context/UserPrefsContext";
 
 export default function Home() {
   const router = useRouter();
-  const { myTeam, hydrated } = useUserPrefs();
+  const { myKidTeams, hydrated } = useUserPrefs();
 
   useEffect(() => {
     if (!hydrated) return;
-    if (myTeam) {
+    if (myKidTeams.length > 0) {
       router.replace("/dashboard");
     } else {
-      router.replace("/select");
+      router.replace("/my-teams");
     }
-  }, [hydrated, myTeam, router]);
+  }, [hydrated, myKidTeams, router]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">

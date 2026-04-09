@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WHA Provincials 2026",
-  description: "Track your team at the 2026 OWHA Provincial Championships",
+  title: "Provincial's 2026",
+  description: "Track your team at the 2026 Provincial Championships",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "WHA Provincials",
+    title: "Provincial's 2026",
   },
 };
 

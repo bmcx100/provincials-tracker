@@ -1,7 +1,7 @@
 {
-  "name": "WHA Provincials 2026",
+  "name": "Provincial's 2026",
   "short_name": "Provincials",
-  "description": "Track your team at the 2026 OWHA Provincial Championships",
+  "description": "Track your team at the 2026 Provincial Championships",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f1f5f9",
