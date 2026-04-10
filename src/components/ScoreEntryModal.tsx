@@ -81,7 +81,7 @@ export default function ScoreEntryModal({
               {homeTeam?.displayName ?? "TBD"}
               {homeTeam && (() => {
                 const r = getRanking(homeTeam.levelId, homeTeam.name);
-                return r ? ` (#${r.rank})` : "";
+                return r ? <span className="ml-1 text-[11px] font-semibold text-amber-700 bg-amber-50 px-1 py-0.5 rounded">{`#${r.rank}`}</span> : null;
               })()}
             </p>
             <input
@@ -104,7 +104,7 @@ export default function ScoreEntryModal({
               {awayTeam?.displayName ?? "TBD"}
               {awayTeam && (() => {
                 const r = getRanking(awayTeam.levelId, awayTeam.name);
-                return r ? ` (#${r.rank})` : "";
+                return r ? <span className="ml-1 text-[11px] font-semibold text-amber-700 bg-amber-50 px-1 py-0.5 rounded">{`#${r.rank}`}</span> : null;
               })()}
             </p>
             <input

@@ -51,6 +51,7 @@ export default function StandingsPage() {
                   <tr className="bg-slate-50 border-b border-slate-200">
                     <th className="text-left py-2 px-3 font-semibold">#</th>
                     <th className="text-left py-2 px-2 font-semibold">Team</th>
+                    <th className="text-center py-2 px-1 font-semibold text-amber-700">Rnk</th>
                     <th className="text-center py-2 px-1 font-semibold">GP</th>
                     <th className="text-center py-2 px-1 font-semibold">W</th>
                     <th className="text-center py-2 px-1 font-semibold">L</th>
@@ -74,10 +75,12 @@ export default function StandingsPage() {
                         <td className="py-2 px-3 text-slate-400">{i + 1}</td>
                         <td className={`py-2 px-2 ${isTracked ? "font-bold text-[var(--color-primary)]" : ""}`}>
                           {s.teamName}
+                        </td>
+                        <td className="text-center py-2 px-1 text-amber-700 font-semibold">
                           {(() => {
                             const team = (level.teams as Team[]).find((t) => t.id === s.teamId);
                             const r = team ? getRanking(team.levelId, team.name) : undefined;
-                            return r ? <span className="text-slate-400 ml-1">(#{r.rank})</span> : null;
+                            return r ? r.rank : "—";
                           })()}
                         </td>
                         <td className="text-center py-2 px-1">{s.gp}</td>

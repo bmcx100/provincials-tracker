@@ -29,12 +29,8 @@ export default function GameCard({
 
   const homeRank = homeTeam ? getRanking(homeTeam.levelId, homeTeam.name) : undefined;
   const awayRank = awayTeam ? getRanking(awayTeam.levelId, awayTeam.name) : undefined;
-  const homeName = homeTeam
-    ? `${homeTeam.displayName}${homeRank ? ` (#${homeRank.rank})` : ""}`
-    : "TBD";
-  const awayName = awayTeam
-    ? `${awayTeam.displayName}${awayRank ? ` (#${awayRank.rank})` : ""}`
-    : "TBD";
+  const homeName = homeTeam ? homeTeam.displayName : "TBD";
+  const awayName = awayTeam ? awayTeam.displayName : "TBD";
 
   const homeHighlight = homeTeam && highlightTeamIds.includes(homeTeam.id);
   const awayHighlight = awayTeam && highlightTeamIds.includes(awayTeam.id);
@@ -80,6 +76,11 @@ export default function GameCard({
             >
               {homeName}
             </span>
+            {homeRank && (
+              <span className="ml-1 text-[11px] font-semibold text-amber-700 bg-amber-50 px-1 py-0.5 rounded">
+                #{homeRank.rank}
+              </span>
+            )}
           </div>
 
           {/* Score */}
@@ -97,6 +98,11 @@ export default function GameCard({
 
           {/* Away */}
           <div className="flex-1 text-right">
+            {awayRank && (
+              <span className="mr-1 text-[11px] font-semibold text-amber-700 bg-amber-50 px-1 py-0.5 rounded">
+                #{awayRank.rank}
+              </span>
+            )}
             <span
               className={`text-base leading-tight ${
                 awayHighlight ? "font-bold text-[var(--color-primary)]" : ""

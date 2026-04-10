@@ -90,6 +90,7 @@ export default function ResultsPage() {
                     <tr className="bg-slate-50 border-b border-slate-200">
                       <th className="text-left py-2 px-3 font-semibold">#</th>
                       <th className="text-left py-2 px-2 font-semibold">Team</th>
+                      <th className="text-center py-2 px-1 font-semibold text-amber-700">Rnk</th>
                       <th className="text-center py-2 px-1 font-semibold">GP</th>
                       <th className="text-center py-2 px-1 font-semibold">W</th>
                       <th className="text-center py-2 px-1 font-semibold">L</th>
@@ -111,9 +112,9 @@ export default function ResultsPage() {
                           <td className="py-2 px-3 text-slate-400">{i + 1}</td>
                           <td className={`py-2 px-2 ${isKid ? "font-bold text-[var(--color-primary)]" : ""}`}>
                             {s.teamName}
-                            {ranking && (
-                              <span className="text-[10px] text-slate-400 ml-1">#{ranking.rank}</span>
-                            )}
+                          </td>
+                          <td className="text-center py-2 px-1 text-amber-700 font-semibold">
+                            {ranking ? ranking.rank : "—"}
                           </td>
                           <td className="text-center py-2 px-1">{s.gp}</td>
                           <td className="text-center py-2 px-1">{s.w}</td>
