@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Game, Team, Score } from "@/lib/types";
+import { getRanking } from "@/data/rankings";
 
 interface ScoreEntryModalProps {
   game: Game | null;
@@ -78,6 +79,10 @@ export default function ScoreEntryModal({
           <div className="flex-1 text-center">
             <p className="text-sm font-medium mb-2 truncate">
               {homeTeam?.displayName ?? "TBD"}
+              {homeTeam && (() => {
+                const r = getRanking(homeTeam.levelId, homeTeam.name);
+                return r ? ` (#${r.rank})` : "";
+              })()}
             </p>
             <input
               ref={homeInputRef}
@@ -97,6 +102,10 @@ export default function ScoreEntryModal({
           <div className="flex-1 text-center">
             <p className="text-sm font-medium mb-2 truncate">
               {awayTeam?.displayName ?? "TBD"}
+              {awayTeam && (() => {
+                const r = getRanking(awayTeam.levelId, awayTeam.name);
+                return r ? ` (#${r.rank})` : "";
+              })()}
             </p>
             <input
               type="number"

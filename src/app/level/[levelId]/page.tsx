@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import schedule from "@/data/schedule.json";
 import { useUserPrefs } from "@/context/UserPrefsContext";
 import { Game, Team, Level, Schedule } from "@/lib/types";
+import { getRanking } from "@/data/rankings";
 import GameCard from "@/components/GameCard";
 import ScoreEntryModal from "@/components/ScoreEntryModal";
 import Link from "next/link";
@@ -155,7 +156,10 @@ export default function LevelPage() {
                       }`}
                     >
                       {team.displayName}
-                      <span className="text-slate-400 text-xs ml-1">#{team.number}</span>
+                      {(() => {
+                        const r = getRanking(team.levelId, team.name);
+                        return r ? <span className="text-slate-400 text-xs ml-1">(#{r.rank})</span> : null;
+                      })()}
                     </div>
                   ))}
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { Game, Team, Score } from "@/lib/types";
+import { getRanking } from "@/data/rankings";
 
 interface GameCardProps {
   game: Game;
@@ -26,8 +27,14 @@ export default function GameCard({
     ? teams.find((t) => t.id === game.awayTeamId)
     : null;
 
-  const homeName = homeTeam?.displayName ?? "TBD";
-  const awayName = awayTeam?.displayName ?? "TBD";
+  const homeRank = homeTeam ? getRanking(homeTeam.levelId, homeTeam.name) : undefined;
+  const awayRank = awayTeam ? getRanking(awayTeam.levelId, awayTeam.name) : undefined;
+  const homeName = homeTeam
+    ? `${homeTeam.displayName}${homeRank ? ` (#${homeRank.rank})` : ""}`
+    : "TBD";
+  const awayName = awayTeam
+    ? `${awayTeam.displayName}${awayRank ? ` (#${awayRank.rank})` : ""}`
+    : "TBD";
 
   const homeHighlight = homeTeam && highlightTeamIds.includes(homeTeam.id);
   const awayHighlight = awayTeam && highlightTeamIds.includes(awayTeam.id);
@@ -49,11 +56,11 @@ export default function GameCard({
       }`}
     >
       {/* Header: time, rink, phase */}
-      <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
+      <div className="flex items-center justify-between text-sm text-slate-500 mb-2">
         <span className="font-medium">
           {game.time} — {game.rink}
         </span>
-        <span className="bg-slate-100 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide">
+        <span className="bg-slate-100 px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wide">
           {phaseLabel}
         </span>
       </div>
@@ -67,7 +74,7 @@ export default function GameCard({
           {/* Home */}
           <div className="flex-1 text-left">
             <span
-              className={`text-sm leading-tight ${
+              className={`text-base leading-tight ${
                 homeHighlight ? "font-bold text-[var(--color-primary)]" : ""
               }`}
             >
@@ -78,11 +85,11 @@ export default function GameCard({
           {/* Score */}
           <div className="flex items-center gap-1 min-w-[60px] justify-center">
             {score ? (
-              <span className="font-mono font-bold text-base">
+              <span className="font-mono font-bold text-lg">
                 {score.home} - {score.away}
               </span>
             ) : (
-              <span className="text-xs text-slate-400 bg-slate-100 px-3 py-1 rounded">
+              <span className="text-sm text-slate-400 bg-slate-100 px-3 py-1 rounded">
                 vs
               </span>
             )}
@@ -91,7 +98,7 @@ export default function GameCard({
           {/* Away */}
           <div className="flex-1 text-right">
             <span
-              className={`text-sm leading-tight ${
+              className={`text-base leading-tight ${
                 awayHighlight ? "font-bold text-[var(--color-primary)]" : ""
               }`}
             >
@@ -102,7 +109,7 @@ export default function GameCard({
       </button>
 
       {/* Game number */}
-      <div className="text-[10px] text-slate-400 mt-1 text-center">
+      <div className="text-xs text-slate-400 mt-1 text-center">
         Game #{game.id}
       </div>
     </div>

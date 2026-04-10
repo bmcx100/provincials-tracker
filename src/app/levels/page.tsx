@@ -512,12 +512,12 @@ export default function SchedulePage() {
                   <div className="px-2 py-1 h-full flex items-center overflow-hidden">
                     <div className="flex-1 min-w-0">
                       <div
-                        className="text-xs font-bold truncate leading-tight"
+                        className="text-sm font-bold truncate leading-tight"
                         style={{ color: `hsl(${hue}, 45%, 25%)` }}
                       >
                         {label}
                       </div>
-                      <div className="text-[11px] truncate leading-tight" style={{ color: `hsl(${hue}, 25%, 50%)` }}>
+                      <div className="text-xs truncate leading-tight" style={{ color: `hsl(${hue}, 25%, 50%)` }}>
                         {cg.game.time} · {cg.game.rink}
                       </div>
                     </div>
