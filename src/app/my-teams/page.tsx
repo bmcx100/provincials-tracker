@@ -488,7 +488,13 @@ function AddTeamSection({ onDone }: { onDone: () => void }) {
               >
                 <AssocLogo name={team.name} size={40} />
                 <div className="min-w-0 flex-1">
-                  <p className="text-base font-semibold text-white truncate">{team.displayName}</p>
+                  <p className="text-base font-semibold text-white truncate">
+                    {team.displayName}
+                    {(() => {
+                      const r = getRanking(team.levelId, team.name);
+                      return r ? ` (#${r.rank})` : "";
+                    })()}
+                  </p>
                   <p className="text-sm text-white/60">
                     {team.levelId.toUpperCase()} — Pool {team.pool}
                   </p>

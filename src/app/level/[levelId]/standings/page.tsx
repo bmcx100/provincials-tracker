@@ -3,8 +3,9 @@
 import { useParams } from "next/navigation";
 import schedule from "@/data/schedule.json";
 import { useUserPrefs } from "@/context/UserPrefsContext";
-import { Level, Schedule } from "@/lib/types";
+import { Level, Team, Schedule } from "@/lib/types";
 import { calculatePoolStandings } from "@/lib/standings";
+import { getRanking } from "@/data/rankings";
 import Link from "next/link";
 
 const data = schedule as Schedule;
@@ -73,6 +74,11 @@ export default function StandingsPage() {
                         <td className="py-2 px-3 text-slate-400">{i + 1}</td>
                         <td className={`py-2 px-2 ${isTracked ? "font-bold text-[var(--color-primary)]" : ""}`}>
                           {s.teamName}
+                          {(() => {
+                            const team = (level.teams as Team[]).find((t) => t.id === s.teamId);
+                            const r = team ? getRanking(team.levelId, team.name) : undefined;
+                            return r ? <span className="text-slate-400 ml-1">(#{r.rank})</span> : null;
+                          })()}
                         </td>
                         <td className="text-center py-2 px-1">{s.gp}</td>
                         <td className="text-center py-2 px-1">{s.w}</td>

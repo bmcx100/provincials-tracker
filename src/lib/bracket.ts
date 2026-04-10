@@ -1,5 +1,6 @@
 import { Game, Level, Score, TeamRef } from "./types";
 import { calculatePoolStandings, rankPoolWinners } from "./standings";
+import { getRanking } from "@/data/rankings";
 
 /**
  * Resolve a playoff team reference to an actual team ID (or null if unresolved).
@@ -83,12 +84,19 @@ export function buildBracket(
     const homeTeam = homeId ? level.teams.find((t) => t.id === homeId) : null;
     const awayTeam = awayId ? level.teams.find((t) => t.id === awayId) : null;
 
+    const homeRank = homeTeam ? getRanking(homeTeam.levelId, homeTeam.name) : undefined;
+    const awayRank = awayTeam ? getRanking(awayTeam.levelId, awayTeam.name) : undefined;
+
     return {
       game,
       homeTeamId: homeId,
       awayTeamId: awayId,
-      homeTeamName: homeTeam?.displayName ?? describeRef(game.homeRef),
-      awayTeamName: awayTeam?.displayName ?? describeRef(game.awayRef),
+      homeTeamName: homeTeam
+        ? `${homeTeam.displayName}${homeRank ? ` (#${homeRank.rank})` : ""}`
+        : describeRef(game.homeRef),
+      awayTeamName: awayTeam
+        ? `${awayTeam.displayName}${awayRank ? ` (#${awayRank.rank})` : ""}`
+        : describeRef(game.awayRef),
       score: scores[String(game.id)] ?? null,
     };
   });
