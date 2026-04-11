@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import {
+  getProvincialsSyncUrl,
   toGamesApiUrl,
   fetchAllOwhaGames,
   scrapeOwhaHtml,
@@ -15,15 +16,18 @@ import { Score } from "@/lib/types";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { url, levelId, mode, overrides } = body as {
-      url: string;
+    const { url: rawUrl, levelId, mode, overrides } = body as {
+      url?: string;
       levelId?: string;
       mode?: "json" | "html" | "auto";
       overrides?: { aid?: number; sid?: number; gtid?: number };
     };
 
+    // Build URL from levelId if no explicit URL provided
+    const url = rawUrl || (levelId ? getProvincialsSyncUrl(levelId) : null);
+
     if (!url) {
-      return NextResponse.json({ error: "url is required" }, { status: 400 });
+      return NextResponse.json({ error: "url or levelId is required" }, { status: 400 });
     }
 
     const syncMode = mode ?? "auto";
@@ -35,7 +39,8 @@ export async function POST(request: Request) {
 
     if (syncMode === "json" || syncMode === "auto") {
       try {
-        const apiUrl = toGamesApiUrl(url, overrides);
+        // If we already have a direct API URL (from getProvincialsSyncUrl), use it as-is
+        const apiUrl = rawUrl ? toGamesApiUrl(rawUrl, overrides) : url;
         debug.apiUrl = apiUrl;
         owhaGames = await fetchAllOwhaGames(apiUrl);
         debug.jsonGamesFound = owhaGames.length;

@@ -11,13 +11,35 @@ const OWHA_REGULAR = { AID: 2788, SID: 12488, GTID_REGULAR: 5069, GTID_PLAYOFFS:
 // Playdowns / province-wide events
 const OWHA_PLAYDOWNS = { AID: 3617, SID: 13359, GTID: 0 };
 
+// 2026 Provincials — lives on rampinteractive, not owha.on.ca
+const OWHA_PROVINCIALS_2026 = { AID: 2910, SID: 13788, GTID: 0 };
+const PROVINCIALS_DOMAIN = "owhaprovincials.msa4.rampinteractive.com";
+
+// levelId → OWHA division ID for 2026 Provincials
+export const DIVISION_IDS: Record<string, number> = {
+  u11aa: 16857,
+  u13aa: 16862,
+  u13a: 16863,
+  u13bb: 16864,
+  u13b: 16865,
+  u13c: 16866,
+  u15aa: 16867,
+  u15a: 16868,
+  u15bb: 16869,
+  u15b: 16870,
+  u15c: 16871,
+  u18bb: 16874,
+  u18b: 16875,
+  u18c: 16876,
+};
+
 // Headers needed for OWHA API requests
 const OWHA_FETCH_HEADERS: Record<string, string> = {
   "User-Agent":
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
   Accept: "application/json, text/javascript, */*",
   "X-Requested-With": "XMLHttpRequest",
-  Referer: "https://www.owha.on.ca/",
+  Referer: `https://${PROVINCIALS_DOMAIN}/`,
 };
 
 // ── OWHA API Types ───────────────────────────────────────────
@@ -64,11 +86,23 @@ export type SyncResponse = {
   debug?: Record<string, unknown>;
 };
 
-// ── URL Parsing ──────────────────────────────────────────────
+// ── URL Building ─────────────────────────────────────────────
+
+/**
+ * Build the 2026 Provincials API URL for a given levelId.
+ * No user config needed — uses the built-in division ID mapping.
+ */
+export function getProvincialsSyncUrl(levelId: string): string | null {
+  const did = DIVISION_IDS[levelId];
+  if (!did) return null;
+  const { AID, SID, GTID } = OWHA_PROVINCIALS_2026;
+  return `https://${PROVINCIALS_DOMAIN}/api/leaguegame/get/${AID}/${SID}/0/${did}/${GTID}/0/0`;
+}
 
 /**
  * Parse an OWHA division URL into its components.
  * URL format: https://www.owha.on.ca/division/{CATID}/{DID}/games
+ *         or: https://owhaprovincials.msa4.rampinteractive.com/division/{CATID}/{DID}/games
  */
 export function parseDivisionUrl(url: string): { catId: string; divisionId: string } | null {
   const m = url.match(/\/division\/(\d+)\/(\d+)/);
@@ -77,8 +111,8 @@ export function parseDivisionUrl(url: string): { catId: string; divisionId: stri
 }
 
 /**
- * Convert a division page URL to the OWHA games API base URL.
- * Appends {page}/ to paginate.
+ * Convert a division page URL to the OWHA games API URL.
+ * Detects whether the URL is for rampinteractive (provincials) or owha.on.ca (regular).
  */
 export function toGamesApiUrl(
   url: string,
@@ -88,18 +122,21 @@ export function toGamesApiUrl(
   if (!parsed) return url;
   const { catId, divisionId } = parsed;
 
-  if (catId === "0") {
-    // Province-wide event (playdowns, possibly provincials)
-    const aid = overrides?.aid ?? OWHA_PLAYDOWNS.AID;
-    const sid = overrides?.sid ?? OWHA_PLAYDOWNS.SID;
-    const gtid = overrides?.gtid ?? OWHA_PLAYDOWNS.GTID;
-    return `https://www.owha.on.ca/api/leaguegame/get/${aid}/${sid}/0/${divisionId}/${gtid}/`;
+  const isProvincials = url.includes("rampinteractive.com");
+
+  if (isProvincials || catId === "0") {
+    const aid = overrides?.aid ?? OWHA_PROVINCIALS_2026.AID;
+    const sid = overrides?.sid ?? OWHA_PROVINCIALS_2026.SID;
+    const gtid = overrides?.gtid ?? OWHA_PROVINCIALS_2026.GTID;
+    const domain = isProvincials ? PROVINCIALS_DOMAIN : "www.owha.on.ca";
+    // monthYear segments are 0/0 — API returns all games at once
+    return `https://${domain}/api/leaguegame/get/${aid}/${sid}/0/${divisionId}/${gtid}/0/0`;
   }
 
   const aid = overrides?.aid ?? OWHA_REGULAR.AID;
   const sid = overrides?.sid ?? OWHA_REGULAR.SID;
   const gtid = overrides?.gtid ?? OWHA_REGULAR.GTID_REGULAR;
-  return `https://www.owha.on.ca/api/leaguegame/get/${aid}/${sid}/${catId}/${divisionId}/${gtid}/`;
+  return `https://www.owha.on.ca/api/leaguegame/get/${aid}/${sid}/${catId}/${divisionId}/${gtid}/0/0`;
 }
 
 /**
@@ -113,10 +150,13 @@ export function toStandingsApiUrl(
   if (!parsed) return url;
   const { catId, divisionId } = parsed;
 
-  if (catId === "0") {
-    const aid = overrides?.aid ?? OWHA_PLAYDOWNS.AID;
-    const sid = overrides?.sid ?? OWHA_PLAYDOWNS.SID;
-    return `https://www.owha.on.ca/api/leaguegame/getstandings3wsdcached/${aid}/${sid}/0/0/${divisionId}/0`;
+  const isProvincials = url.includes("rampinteractive.com");
+
+  if (isProvincials || catId === "0") {
+    const aid = overrides?.aid ?? OWHA_PROVINCIALS_2026.AID;
+    const sid = overrides?.sid ?? OWHA_PROVINCIALS_2026.SID;
+    const domain = isProvincials ? PROVINCIALS_DOMAIN : "www.owha.on.ca";
+    return `https://${domain}/api/leaguegame/getstandings3wsdcached/${aid}/${sid}/0/0/${divisionId}/0`;
   }
 
   const aid = overrides?.aid ?? OWHA_REGULAR.AID;
@@ -128,26 +168,19 @@ export function toStandingsApiUrl(
 // ── Fetching ─────────────────────────────────────────────────
 
 /**
- * Fetch all pages from the OWHA games API.
+ * Fetch all games from the OWHA API.
+ * The 2026 Provincials API returns all games in a single call (no pagination needed).
  */
-export async function fetchAllOwhaGames(baseUrl: string): Promise<OwhaApiGame[]> {
-  const all: OwhaApiGame[] = [];
-  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+export async function fetchAllOwhaGames(apiUrl: string): Promise<OwhaApiGame[]> {
+  const res = await fetch(apiUrl, { headers: OWHA_FETCH_HEADERS, cache: "no-store" });
 
-  for (let page = 0; page < 20; page++) {
-    const url = `${base}${page}/`;
-    const res = await fetch(url, { headers: OWHA_FETCH_HEADERS, cache: "no-store" });
-
-    if (!res.ok) {
-      throw new Error(`OWHA API returned ${res.status} on page ${page}`);
-    }
-
-    const data = await res.json();
-    if (!Array.isArray(data) || data.length === 0) break;
-    all.push(...data);
+  if (!res.ok) {
+    throw new Error(`OWHA API returned ${res.status}`);
   }
 
-  return all;
+  const data = await res.json();
+  if (!Array.isArray(data)) return [];
+  return data;
 }
 
 /**

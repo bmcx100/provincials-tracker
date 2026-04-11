@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useUserPrefs } from "@/context/UserPrefsContext";
 import schedule from "@/data/schedule.json";
-import type { SyncResponse } from "@/lib/owha";
+import { DIVISION_IDS, type SyncResponse } from "@/lib/owha";
 import type { Level } from "@/lib/types";
 
 const levels = (schedule as { levels: Level[] }).levels;
@@ -81,12 +81,14 @@ export default function AdminPage() {
 
   const syncLevel = useCallback(
     async (levelId: string) => {
-      const url = getUrl(levelId);
-      if (!url) {
+      // No URL needed — the API route builds it from levelId using built-in division IDs
+      const url = getUrl(levelId) || undefined;
+
+      if (!url && !DIVISION_IDS[levelId]) {
         setSyncStatus((s) => ({ ...s, [levelId]: "error" }));
         setSyncResults((r) => ({
           ...r,
-          [levelId]: { games: [], summary: { total: 0, completed: 0, matched: 0, unmatched: 0, scores: {} }, error: "No URL configured" },
+          [levelId]: { games: [], summary: { total: 0, completed: 0, matched: 0, unmatched: 0, scores: {} }, error: "No division ID for this level" },
         }));
         return;
       }
@@ -103,7 +105,7 @@ export default function AdminPage() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            url,
+            url: url || undefined,
             levelId,
             mode: "auto",
             overrides: Object.keys(overrides).length > 0 ? overrides : undefined,
@@ -126,11 +128,9 @@ export default function AdminPage() {
 
   const syncAll = useCallback(async () => {
     for (const level of levels) {
-      if (getUrl(level.id)) {
-        await syncLevel(level.id);
-      }
+      await syncLevel(level.id);
     }
-  }, [getUrl, syncLevel]);
+  }, [syncLevel]);
 
   // Auto-refresh
   useEffect(() => {
@@ -231,8 +231,7 @@ export default function AdminPage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={syncAll}
-                disabled={!config.globalUrl && Object.keys(config.urls).length === 0}
-                className="flex-1 h-12 rounded-lg bg-[var(--color-primary)] text-white font-semibold text-sm disabled:opacity-40 active:opacity-80"
+                className="flex-1 h-12 rounded-lg bg-[var(--color-primary)] text-white font-semibold text-sm active:opacity-80"
               >
                 Sync All Levels
               </button>
@@ -273,7 +272,7 @@ export default function AdminPage() {
             {levels.map((level) => {
               const status = syncStatus[level.id] || "idle";
               const result = syncResults[level.id];
-              const hasUrl = !!getUrl(level.id);
+              const hasDivision = !!DIVISION_IDS[level.id] || !!getUrl(level.id);
               const existingScores = countExistingScores(level.id);
               const newScores = Object.keys(result?.summary?.scores ?? {}).length;
               const isExpanded = expandedLevel === level.id;
@@ -303,8 +302,8 @@ export default function AdminPage() {
                       {result?.error && (
                         <p className="text-xs text-red-500 mt-0.5 truncate">{result.error}</p>
                       )}
-                      {!hasUrl && (
-                        <p className="text-xs text-slate-400 mt-0.5">No URL configured</p>
+                      {!hasDivision && (
+                        <p className="text-xs text-slate-400 mt-0.5">No division ID mapped</p>
                       )}
                     </div>
                     <svg
@@ -323,7 +322,7 @@ export default function AdminPage() {
                       <div className="flex gap-2">
                         <button
                           onClick={() => syncLevel(level.id)}
-                          disabled={!hasUrl || status === "syncing"}
+                          disabled={!hasDivision || status === "syncing"}
                           className="flex-1 h-10 rounded-lg bg-[var(--color-primary)] text-white text-xs font-medium disabled:opacity-40"
                         >
                           {status === "syncing" ? "Syncing..." : "Sync"}
@@ -471,7 +470,7 @@ export default function AdminPage() {
               <h3 className="text-sm font-medium">API Overrides (Advanced)</h3>
               <p className="text-[10px] text-slate-400 leading-snug">
                 Override OWHA API constants if the defaults don&apos;t work. Find these via DevTools → Network → XHR on the OWHA page.
-                Leave blank to use defaults (Playdowns: AID=3617, SID=13359 | Regular: AID=2788, SID=12488).
+                Leave blank to use defaults (Provincials 2026: AID=2910, SID=13788).
               </p>
               <div className="grid grid-cols-3 gap-2">
                 <div>

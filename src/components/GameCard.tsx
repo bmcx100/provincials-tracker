@@ -66,50 +66,55 @@ export default function GameCard({
         onClick={() => onScoreTap(game)}
         className="w-full active:bg-slate-50 rounded transition-colors"
       >
-        <div className="flex items-center justify-between gap-2">
+        <div className="space-y-1">
           {/* Home */}
-          <div className="flex-1 text-left">
-            <span
-              className={`text-base leading-tight ${
-                homeHighlight ? "font-bold text-[var(--color-primary)]" : ""
-              }`}
-            >
-              {homeName}
-            </span>
-            {homeRank && (
-              <span className="ml-1 text-[11px] font-semibold text-amber-700 bg-amber-50 px-1 py-0.5 rounded">
-                #{homeRank.rank}
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1 min-w-0">
+              <span
+                className={`text-base leading-tight truncate ${
+                  homeHighlight ? "font-bold text-[var(--color-primary)]" : ""
+                }`}
+              >
+                {homeName}
               </span>
-            )}
-          </div>
-
-          {/* Score */}
-          <div className="flex items-center gap-1 min-w-[60px] justify-center">
+              {homeRank && (
+                <span className="text-[11px] font-semibold text-amber-700 bg-amber-50 px-1 py-0.5 rounded shrink-0">
+                  #{homeRank.rank}
+                </span>
+              )}
+            </div>
             {score ? (
-              <span className="font-mono font-bold text-lg">
-                {score.home} - {score.away}
+              <span className={`font-mono font-bold text-base tabular-nums shrink-0 ${
+                score.home > score.away ? "text-slate-900" : "text-slate-400"
+              }`}>
+                {score.home}
               </span>
-            ) : (
-              <span className="text-sm text-slate-400 bg-slate-100 px-3 py-1 rounded">
-                vs
-              </span>
-            )}
+            ) : null}
           </div>
 
           {/* Away */}
-          <div className="flex-1 text-right">
-            {awayRank && (
-              <span className="mr-1 text-[11px] font-semibold text-amber-700 bg-amber-50 px-1 py-0.5 rounded">
-                #{awayRank.rank}
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1 min-w-0">
+              <span
+                className={`text-base leading-tight truncate ${
+                  awayHighlight ? "font-bold text-[var(--color-primary)]" : ""
+                }`}
+              >
+                {awayName}
               </span>
-            )}
-            <span
-              className={`text-base leading-tight ${
-                awayHighlight ? "font-bold text-[var(--color-primary)]" : ""
-              }`}
-            >
-              {awayName}
-            </span>
+              {awayRank && (
+                <span className="text-[11px] font-semibold text-amber-700 bg-amber-50 px-1 py-0.5 rounded shrink-0">
+                  #{awayRank.rank}
+                </span>
+              )}
+            </div>
+            {score ? (
+              <span className={`font-mono font-bold text-base tabular-nums shrink-0 ${
+                score.away > score.home ? "text-slate-900" : "text-slate-400"
+              }`}>
+                {score.away}
+              </span>
+            ) : null}
           </div>
         </div>
       </button>
